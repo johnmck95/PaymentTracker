@@ -19,7 +19,7 @@ public class PaymentService {
 
     public Payment addPayment(Payment payment){
         payment.setId(nextId++);
-        
+
         LocalDateTime now = LocalDateTime.now();
         payment.setCreatedDate(now);
         payment.setUpdatedDate(now);
@@ -28,4 +28,7 @@ public class PaymentService {
         return payment;
     }
 
+    public void deletePayment(Long id){
+        payments.removeIf(payment -> payment.getId().equals(id));
+    }
 }
