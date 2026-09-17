@@ -1,6 +1,6 @@
 <h2>Payments</h2>
 
-<p>Total payments: {{ payments.length }}</p>
+<p>Total payments: {{ payments().length }}</p>
 
 <table>
   <thead>
@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    @for (payment of payments; track payment.id) {
+    @for (payment of payments(); track payment.id) {
       <tr>
         <td>{{ payment.paymentDate }}</td>
         <td>{{ payment.payee }}</td>
