@@ -1,0 +1,15 @@
+<form (ngSubmit)="submitPayment()">
+  <div class="payment-fields">
+    <input type="date" [formField]="paymentForm.paymentDate" />
+
+    <input type="text" placeholder="Payee" [formField]="paymentForm.payee" />
+
+    <input type="number" placeholder="Amount" step="0.01" [formField]="paymentForm.amount" />
+
+    <input type="text" placeholder="Category" [formField]="paymentForm.category" />
+
+    <input type="text" placeholder="Description" [formField]="paymentForm.description" />
+
+    <button type="submit">Record Payment</button>
+  </div>
+</form>

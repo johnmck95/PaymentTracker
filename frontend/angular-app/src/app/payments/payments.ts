@@ -9,7 +9,6 @@ import { PaymentService } from './payments.service';
   templateUrl: './payments.html',
 })
 export class Payments {
-  // payments: Payment[] = [];
   payments = signal<Payment[]>([]);
   constructor(private paymentService: PaymentService) {}
 

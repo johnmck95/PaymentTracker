@@ -1,0 +1,23 @@
+.payment-fields {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+}
+
+.payment-fields input {
+  padding: 8px;
+  min-width: 0;
+}
+
+.payment-fields input[type='date'] {
+  width: 150px;
+}
+
+.payment-fields input[type='number'] {
+  width: 100px;
+}
+
+.payment-fields input[type='text'] {
+  flex: 1;
+}
