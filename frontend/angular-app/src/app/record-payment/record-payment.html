@@ -7,7 +7,8 @@
     <input type="number" placeholder="Amount" step="0.01" [formField]="paymentForm.amount" />
 
     <select type="text" [formField]="paymentForm.category">
-      @for (category of categories; track categories) {
+      <option value="">Select a category</option>
+      @for (category of categories; track category) {
         <option [value]="category">{{ category }}</option>
       }
     </select>

@@ -13,7 +13,6 @@ import { PaymentService } from '../payments/payments.service';
 export class RecordPayment {
   paymentCreated = output<void>();
   categories = [
-    '',
     'Food',
     'Transportation',
     'Housing',

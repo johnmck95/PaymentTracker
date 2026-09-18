@@ -30,3 +30,7 @@
 .payment-fields button {
   padding: 8px;
 }
+
+select:has(option:checked[value='']) {
+  color: lightgray;
+}

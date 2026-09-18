@@ -35,4 +35,8 @@ export class Payments {
       },
     });
   }
+
+  ngOnInit(): void {
+    this.loadPayments();
+  }
 }
