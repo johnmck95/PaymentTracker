@@ -5,6 +5,11 @@
   align-items: center;
 }
 
+.payment-fields select {
+  padding: 8px;
+  flex: 1;
+}
+
 .payment-fields input {
   padding: 8px;
   min-width: 0;
@@ -20,4 +25,8 @@
 
 .payment-fields input[type='text'] {
   flex: 1;
+}
+
+.payment-fields button {
+  padding: 8px;
 }

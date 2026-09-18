@@ -12,7 +12,17 @@ import { FormsModule } from '@angular/forms';
 })
 export class RecordPayment {
   private http = inject(HttpClient);
-
+  categories = [
+    '',
+    'Food',
+    'Transportation',
+    'Housing',
+    'Entertainment',
+    'Shopping',
+    'Utilities',
+    'Healthcare',
+    'Other',
+  ];
   paymentModel = signal<Omit<Payment, 'id' | 'updatedDate' | 'createdDate'>>({
     amount: 0,
     category: '',

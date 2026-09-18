@@ -6,7 +6,11 @@
 
     <input type="number" placeholder="Amount" step="0.01" [formField]="paymentForm.amount" />
 
-    <input type="text" placeholder="Category" [formField]="paymentForm.category" />
+    <select type="text" [formField]="paymentForm.category">
+      @for (category of categories; track categories) {
+        <option [value]="category">{{ category }}</option>
+      }
+    </select>
 
     <input type="text" placeholder="Description" [formField]="paymentForm.description" />
 
