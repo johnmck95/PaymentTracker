@@ -17,6 +17,7 @@ export class Payments {
     this.paymentService.deletePayment(id).subscribe({
       next: () => {
         this.payments.update((payments) => payments.filter((payment) => payment.id !== id));
+        this.loadPayments();
       },
       error: (error) => {
         console.error(`Failed to delete payment ${id}.`, error);
@@ -24,13 +25,13 @@ export class Payments {
     });
   }
 
-  ngOnInit(): void {
+  loadPayments(): void {
     this.paymentService.getPayments().subscribe({
       next: (payments) => {
         this.payments.set(payments);
       },
       error: (error) => {
-        console.log('Failed to load payments.', error);
+        console.error('Failed to load payments.', error);
       },
     });
   }

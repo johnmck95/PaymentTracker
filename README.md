@@ -1,3 +1,5 @@
+A small learning project.
+
 # Frontend
 
 - Angular, TypeScript

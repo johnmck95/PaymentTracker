@@ -1,8 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { Payment } from '../payments/payment';
 import { form, FormField } from '@angular/forms/signals';
-import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PaymentService } from '../payments/payments.service';
 
 @Component({
   imports: [FormsModule, FormField],
@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './record-payment.html',
 })
 export class RecordPayment {
-  private http = inject(HttpClient);
+  paymentCreated = output<void>();
   categories = [
     '',
     'Food',
@@ -23,6 +23,7 @@ export class RecordPayment {
     'Healthcare',
     'Other',
   ];
+  private paymentService = inject(PaymentService);
   paymentModel = signal<Omit<Payment, 'id' | 'updatedDate' | 'createdDate'>>({
     amount: 0,
     category: '',
@@ -30,14 +31,14 @@ export class RecordPayment {
     payee: '',
     paymentDate: '',
   });
-
   paymentForm = form(this.paymentModel);
 
   submitPayment() {
-    console.log('SUBMITTING', this.paymentModel());
-    this.http.post('http://localhost:8080/payments', this.paymentModel()).subscribe({
+    this.paymentService.createPayment(this.paymentModel()).subscribe({
       next: (response) => {
         console.log('Payment created:', response);
+        // Alert Payment component - refetch all payments after this payment is posted.
+        this.paymentCreated.emit();
       },
       error: (error) => {
         console.error('Failed to create payment:', error);

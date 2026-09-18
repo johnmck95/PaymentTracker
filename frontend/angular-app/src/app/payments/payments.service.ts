@@ -15,6 +15,10 @@ export class PaymentService {
     return this.http.get<Payment[]>(this.apiUrl);
   }
 
+  createPayment(payment: Omit<Payment, 'id' | 'createdDate' | 'updatedDate'>): Observable<Payment> {
+    return this.http.post<Payment>(this.apiUrl, payment);
+  }
+
   deletePayment(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }

@@ -1,4 +1,4 @@
-<app-record-payment />
-<app-payments />
+<app-record-payment (paymentCreated)="payments.loadPayments()" />
+<app-payments #payments />
 
 <router-outlet />
