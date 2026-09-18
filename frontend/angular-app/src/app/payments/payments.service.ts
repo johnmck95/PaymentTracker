@@ -14,4 +14,8 @@ export class PaymentService {
   getPayments(): Observable<Payment[]> {
     return this.http.get<Payment[]>(this.apiUrl);
   }
+
+  deletePayment(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
 }

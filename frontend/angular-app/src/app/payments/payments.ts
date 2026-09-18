@@ -12,12 +12,21 @@ export class Payments {
   payments = signal<Payment[]>([]);
   constructor(private paymentService: PaymentService) {}
 
-  ngOnInit(): void {
-    console.log('Payments component initialized');
+  deletePayment(id: number) {
+    console.log(`Delete payment with id: ${id}.`);
+    this.paymentService.deletePayment(id).subscribe({
+      next: () => {
+        this.payments.update((payments) => payments.filter((payment) => payment.id !== id));
+      },
+      error: (error) => {
+        console.error(`Failed to delete payment ${id}.`, error);
+      },
+    });
+  }
 
+  ngOnInit(): void {
     this.paymentService.getPayments().subscribe({
       next: (payments) => {
-        console.log('Payments received:', payments);
         this.payments.set(payments);
       },
       error: (error) => {

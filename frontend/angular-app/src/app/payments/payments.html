@@ -17,6 +17,7 @@
         <td>{{ payment.amount }}</td>
         <td>{{ payment.category }}</td>
         <td>{{ payment.description }}</td>
+        <button class="delete-button" (click)="deletePayment(payment.id)">🗑️</button>
       </tr>
     }
   </tbody>
