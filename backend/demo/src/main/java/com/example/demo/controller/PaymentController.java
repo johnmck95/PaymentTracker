@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.PaymentService;
 
+import jakarta.validation.Valid;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController 
 @RequestMapping("/payments")
@@ -29,7 +31,7 @@ public class PaymentController {
     }
 
     @PostMapping 
-    public Payment createPayment(@RequestBody Payment payment){
+    public Payment createPayment(@Valid @RequestBody Payment payment){
         return paymentService.addPayment(payment);
     }
 

@@ -4,6 +4,11 @@ import { form, FormField } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { PaymentService } from '../payments/payments.service';
 
+type ValidationError = {
+  field: string;
+  defaultMessage: string;
+};
+
 @Component({
   imports: [FormsModule, FormField],
   selector: 'app-record-payment',
@@ -31,6 +36,7 @@ export class RecordPayment {
     paymentDate: '',
   });
   paymentForm = form(this.paymentModel);
+  errors = signal<ValidationError[]>([]);
 
   submitPayment() {
     this.paymentService.createPayment(this.paymentModel()).subscribe({
@@ -38,9 +44,11 @@ export class RecordPayment {
         console.log('Payment created:', response);
         // Alert Payment component - refetch all payments after this payment is posted.
         this.paymentCreated.emit();
+        this.errors.set([]);
       },
       error: (error) => {
         console.error('Failed to create payment:', error);
+        this.errors.set(error.error.errors);
       },
     });
   }

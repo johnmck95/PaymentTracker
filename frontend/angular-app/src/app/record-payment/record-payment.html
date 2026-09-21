@@ -17,4 +17,9 @@
 
     <button type="submit">Record Payment</button>
   </div>
+  @if (errors()?.length > 0) {
+    @for (error of errors(); track error.field) {
+      <p class="error-message">{{ error.field }}: {{ error.defaultMessage }}</p>
+    }
+  }
 </form>

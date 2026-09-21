@@ -34,3 +34,8 @@
 select:has(option:checked[value='']) {
   color: lightgray;
 }
+
+.error-message {
+  color: red;
+  margin: 8px;
+}

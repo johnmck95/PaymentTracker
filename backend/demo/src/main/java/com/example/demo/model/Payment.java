@@ -1,4 +1,9 @@
 package com.example.demo.model;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,22 +36,31 @@ public class Payment {
         return updatedDate;
     }
 
+    @NotNull
     public LocalDate getPaymentDate() {
         return paymentDate;
     }
 
+    @NotBlank
+    @Size(max = 100)
     public String getPayee() {
         return payee;
     }
 
+    @Positive 
+    @NotNull
+    @DecimalMax("1000000.00")
     public BigDecimal getAmount() {
         return amount;
     }
 
+    @Size(max = 500)
     public String getDescription() {
         return description;
     }
 
+    @NotBlank
+    @Size(max = 100)
     public String getCategory() {
         return category;
     }
