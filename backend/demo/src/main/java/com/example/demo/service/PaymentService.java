@@ -1,34 +1,36 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Payment;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import com.example.demo.repository.PaymentRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Service
 public class PaymentService {
-    private final List<Payment> payments = new ArrayList<>();
-    private Long nextId = 1L;
 
-    public List<Payment> getAllPayments() {
-        return payments;
+    private final PaymentRepository paymentRepository;
+
+    public PaymentService(PaymentRepository paymentRepository) {
+        this.paymentRepository = paymentRepository;
     }
 
-    public Payment addPayment(Payment payment){
-        payment.setId(nextId++);
+    public List<Payment> getAllPayments() {
+        return paymentRepository.findAll();
+    }
 
+    public Payment addPayment(Payment payment) {
         LocalDateTime now = LocalDateTime.now();
+
         payment.setCreatedDate(now);
         payment.setUpdatedDate(now);
 
-        payments.add(payment);
-        return payment;
+        return paymentRepository.save(payment);
     }
 
-    public void deletePayment(Long id){
-        payments.removeIf(payment -> payment.getId().equals(id));
+    public void deletePayment(Long id) {
+        paymentRepository.deleteById(id);
     }
 }
