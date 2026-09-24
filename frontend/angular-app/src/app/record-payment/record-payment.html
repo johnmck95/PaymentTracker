@@ -12,8 +12,12 @@
       [formField]="paymentForm.amount"
     />
 
-    <select class="form-select" [formField]="paymentForm.category">
-      <option value="">Select a category</option>
+    <select
+      class="form-select"
+      [formField]="paymentForm.category"
+      [class.text-secondary]="paymentForm.category().value() === ''"
+    >
+      <option value="" class="text-secondary">Select a category</option>
 
       @for (category of categories; track category) {
         <option [value]="category">{{ category }}</option>
@@ -27,7 +31,7 @@
       [formField]="paymentForm.description"
     />
 
-    <button type="submit" class="btn btn-primary text-nowrap">Record Payment</button>
+    <button type="submit" class="btn btn-primary text-nowrap">Save</button>
   </div>
 
   @if (errors()?.length > 0) {
