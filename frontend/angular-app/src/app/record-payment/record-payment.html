@@ -22,6 +22,7 @@
       step="0.01"
       [formField]="paymentForm.amount"
       [class.is-invalid]="hasError('amount')"
+      [class.text-secondary]="paymentForm.amount().value() <= 0"
     />
 
     <select

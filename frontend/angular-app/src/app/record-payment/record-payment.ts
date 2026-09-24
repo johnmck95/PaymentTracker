@@ -28,13 +28,14 @@ export class RecordPayment {
     'Other',
   ];
   private paymentService = inject(PaymentService);
-  paymentModel = signal<Omit<Payment, 'id' | 'updatedDate' | 'createdDate'>>({
+  private paymentModelInit = {
     amount: 0,
     category: '',
     description: '',
     payee: '',
     paymentDate: new Date().toISOString().split('T')[0],
-  });
+  };
+  paymentModel = signal<Omit<Payment, 'id' | 'updatedDate' | 'createdDate'>>(this.paymentModelInit);
   paymentForm = form(this.paymentModel);
   errors = signal<ValidationError[]>([]);
 
@@ -49,6 +50,7 @@ export class RecordPayment {
         // Alert Payment component - refetch all payments after this payment is posted.
         this.paymentCreated.emit();
         this.errors.set([]);
+        this.paymentModel.set(this.paymentModelInit);
       },
       error: (error) => {
         console.error('Failed to create payment:', error);
