@@ -1,8 +1,19 @@
 <form (ngSubmit)="submitPayment()">
   <div class="payment-fields d-flex gap-2 align-items-center">
-    <input type="date" class="form-control" [formField]="paymentForm.paymentDate" />
+    <input
+      type="date"
+      class="form-control"
+      [formField]="paymentForm.paymentDate"
+      [class.is-invalid]="hasError('paymentDate')"
+    />
 
-    <input type="text" class="form-control" placeholder="Payee" [formField]="paymentForm.payee" />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Payee"
+      [formField]="paymentForm.payee"
+      [class.is-invalid]="hasError('payee')"
+    />
 
     <input
       type="number"
@@ -10,12 +21,14 @@
       placeholder="Amount"
       step="0.01"
       [formField]="paymentForm.amount"
+      [class.is-invalid]="hasError('amount')"
     />
 
     <select
       class="form-select"
       [formField]="paymentForm.category"
       [class.text-secondary]="paymentForm.category().value() === ''"
+      [class.is-invalid]="hasError('category')"
     >
       <option value="" class="text-secondary">Select a category</option>
 
@@ -29,16 +42,21 @@
       class="form-control"
       placeholder="Description"
       [formField]="paymentForm.description"
+      [class.is-invalid]="hasError('description')"
     />
 
     <button type="submit" class="btn btn-primary text-nowrap">Save</button>
   </div>
 
   @if (errors()?.length > 0) {
-    <div class="mt-2">
-      @for (error of errors(); track error.field) {
-        <div class="text-danger small">{{ error.field }}: {{ error.defaultMessage }}</div>
-      }
+    <div class="alert alert-danger mt-3 mb-0" role="alert">
+      <div class="fw-semibold mb-1">Please fix the following:</div>
+
+      <ul class="mb-0 ps-3">
+        @for (error of errors(); track error.field) {
+          <li>{{ error.field }}: {{ error.defaultMessage }}</li>
+        }
+      </ul>
     </div>
   }
 </form>

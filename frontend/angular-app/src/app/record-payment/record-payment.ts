@@ -38,6 +38,10 @@ export class RecordPayment {
   paymentForm = form(this.paymentModel);
   errors = signal<ValidationError[]>([]);
 
+  hasError(field: string) {
+    return this.errors()?.some((error) => error.field === field) ?? false;
+  }
+
   submitPayment() {
     this.paymentService.createPayment(this.paymentModel()).subscribe({
       next: (response) => {
