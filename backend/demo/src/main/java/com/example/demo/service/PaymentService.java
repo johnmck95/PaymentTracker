@@ -18,7 +18,7 @@ public class PaymentService {
     }
 
     public List<Payment> getAllPayments() {
-        return paymentRepository.findAll();
+        return paymentRepository.findAllByOrderByPaymentDateDesc();
     }
 
     public Payment addPayment(Payment payment) {
