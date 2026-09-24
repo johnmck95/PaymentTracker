@@ -1,41 +1,20 @@
 .payment-fields {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  align-items: center;
-}
-
-.payment-fields select {
-  padding: 8px;
-  flex: 1;
-}
-
-.payment-fields input {
-  padding: 8px;
-  min-width: 0;
+  width: 100%;
 }
 
 .payment-fields input[type='date'] {
-  width: 150px;
+  flex: 0 0 150px;
 }
 
 .payment-fields input[type='number'] {
-  width: 100px;
+  flex: 0 0 110px;
 }
 
-.payment-fields input[type='text'] {
+.payment-fields input[type='text'],
+.payment-fields select {
   flex: 1;
 }
 
 .payment-fields button {
-  padding: 8px;
-}
-
-select:has(option:checked[value='']) {
-  color: lightgray;
-}
-
-.error-message {
-  color: red;
-  margin: 8px;
+  flex: 0 0 auto;
 }

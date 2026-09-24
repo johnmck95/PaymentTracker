@@ -1,4 +1,6 @@
-<app-record-payment (paymentCreated)="payments.loadPayments()" />
-<app-payments #payments />
+<div class="container-fluid p-3">
+  <app-record-payment (paymentCreated)="payments.loadPayments()" />
+  <app-payments #payments />
+</div>
 
 <router-outlet />

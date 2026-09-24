@@ -1,25 +1,40 @@
 <form (ngSubmit)="submitPayment()">
-  <div class="payment-fields">
-    <input type="date" [formField]="paymentForm.paymentDate" />
+  <div class="payment-fields d-flex gap-2 align-items-center">
+    <input type="date" class="form-control" [formField]="paymentForm.paymentDate" />
 
-    <input type="text" placeholder="Payee" [formField]="paymentForm.payee" />
+    <input type="text" class="form-control" placeholder="Payee" [formField]="paymentForm.payee" />
 
-    <input type="number" placeholder="Amount" step="0.01" [formField]="paymentForm.amount" />
+    <input
+      type="number"
+      class="form-control"
+      placeholder="Amount"
+      step="0.01"
+      [formField]="paymentForm.amount"
+    />
 
-    <select type="text" [formField]="paymentForm.category">
+    <select class="form-select" [formField]="paymentForm.category">
       <option value="">Select a category</option>
+
       @for (category of categories; track category) {
         <option [value]="category">{{ category }}</option>
       }
     </select>
 
-    <input type="text" placeholder="Description" [formField]="paymentForm.description" />
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Description"
+      [formField]="paymentForm.description"
+    />
 
-    <button type="submit">Record Payment</button>
+    <button type="submit" class="btn btn-primary text-nowrap">Record Payment</button>
   </div>
+
   @if (errors()?.length > 0) {
-    @for (error of errors(); track error.field) {
-      <p class="error-message">{{ error.field }}: {{ error.defaultMessage }}</p>
-    }
+    <div class="mt-2">
+      @for (error of errors(); track error.field) {
+        <div class="text-danger small">{{ error.field }}: {{ error.defaultMessage }}</div>
+      }
+    </div>
   }
 </form>
