@@ -33,7 +33,7 @@ export class RecordPayment {
     category: '',
     description: '',
     payee: '',
-    paymentDate: '',
+    paymentDate: new Date().toISOString().split('T')[0],
   });
   paymentForm = form(this.paymentModel);
   errors = signal<ValidationError[]>([]);
