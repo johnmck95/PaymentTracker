@@ -16,7 +16,7 @@
         <tr>
           <td>{{ payment.paymentDate }}</td>
           <td>{{ payment.payee }}</td>
-          <td>${{ payment.amount }}</td>
+          <td>{{ payment.amount | currency: 'CAD' : '$' : '1.2-2' }}</td>
           <td>{{ payment.category }}</td>
           <td>{{ payment.description }}</td>
           <td class="text-end">

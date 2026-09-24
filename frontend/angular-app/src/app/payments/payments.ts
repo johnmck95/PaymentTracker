@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { Payment } from './payment';
 import { PaymentService } from './payments.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
-  imports: [],
+  imports: [CurrencyPipe],
   selector: 'app-payments',
   styleUrl: './payments.css',
   templateUrl: './payments.html',
